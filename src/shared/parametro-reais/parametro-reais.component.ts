@@ -6,7 +6,7 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ParametroPlanoService } from '../../services/parametroPlano.service';
 import { UserDataService } from '../../services/userdata.service';
-
+import moment from 'moment';
 @Component({
   selector: 'app-parametro-reais',
   standalone: true,
@@ -21,6 +21,7 @@ export class ParametroReaisComponent {
   minValue!: number;
   maxValue!: number;
   reais = new FormControl('');
+  rulesDIB = [32, 17, 22, 18, 30, 39, 5, 16];
 
   ngOnInit() {
     if(this.userDataService.userData() && this.parametroPlanoService.parametroPlano().length > 0) {
@@ -41,11 +42,29 @@ export class ParametroReaisComponent {
 
       // exibe resultado com valor inicial
       this.simulacaoService.rendaReaisValido.update(() => true);
+
+      if (this.rulesDIB.includes(this.userDataService.userData()?.NumPlbnf!)) {
+        if (moment(this.userDataService.userData()?.DatInicioBfpart).add(48, 'month') < moment()) {
+            // aplicar validadores no input apenas mínimo e máximo saldo
+            this.maxValue = this.userDataService.userData()?.SaldoAtuReais as number;
+            this.reais.setValidators([Validators.min(this.minValue), Validators.max(this.maxValue)]);
+        } else {
+          // valor máximo permitido
+          this.maxValue = this.userDataService.userData()?.SaldoAtuReais as number * (this.parametroPlanoService.parametroPlano().filter(a => a.TipoRenda == 5)[0].LimiteMaximoSaldo / 100);
+
+          // aplicar validadores no input
+          this.reais.setValidators([Validators.min(this.minValue), Validators.max(this.maxValue)]);
+        }
+
+      } else {
       // valor máximo permitido
       this.maxValue = this.userDataService.userData()?.SaldoAtuReais as number * (this.parametroPlanoService.parametroPlano().filter(a => a.TipoRenda == 5)[0].LimiteMaximoSaldo / 100);
 
       // aplicar validadores no input
       this.reais.setValidators([Validators.min(this.minValue), Validators.max(this.maxValue)]);
+      }
+
+
     }
   }
 

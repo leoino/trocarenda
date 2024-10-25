@@ -26,12 +26,24 @@ export class SelecionartiporendaComponent {
   }
   activeTab = 0;
   tiposPermitidos: number[] = [];
+  rulesTipoRenda = [5, 16, 39];
 
   ngOnInit() {
     if(this.parametroPlanoService.parametroPlano().length > 0) {
       this.parametroPlanoService.parametroPlano().forEach(parametro => {
         if(parametro.IsEnabled) {
-          this.tiposPermitidos.push(parametro.TipoRenda);
+          if (parametro.TipoRenda == 6) {
+            if(this.rulesTipoRenda.includes(this.userDataService.userData()?.NumPlbnf!)) {
+              if(this.userDataService.userData()?.TipoRenda == 'Renda em Percentual do Saldo') {
+                this.tiposPermitidos.push(parametro.TipoRenda);
+              }
+            } else {
+              this.tiposPermitidos.push(parametro.TipoRenda);
+            }
+          } else {
+            this.tiposPermitidos.push(parametro.TipoRenda);
+          }
+
         }
       });
     }
