@@ -1,0 +1,40 @@
+<div class="container">
+  <h3>Posição Atual</h3>
+  <div class="linha">
+    <div class="grade">
+      <div class="col">
+        <div class="label">Plano</div>
+        <div class="content">{{ userDataService.userData()?.NumPlbnf }} - {{ userDataService.userData()?.DcrPlbnf }}</div>
+      </div>
+      <div class="col">
+        <div class="label">Data de Início do Benefício</div>
+        <div class="content">{{ userDataService.userData()?.DatInicioBfpart | date:'dd/MM/yyyy' }}</div>
+      </div>
+      <div class="col">
+        <div class="label">Valor do Saldo de Conta</div>
+        <div class="content">{{ userDataService.userData()?.SaldoAtuReais | currency:'BRL' }}</div>
+        <span class="content-small">Atualizado em {{ userDataService.userData()?.DatReferFcfnpt | date:'dd/MM/yyyy' }}</span>
+      </div>
+      <div class="col">
+        <div class="label">Valor de Benefício Atual</div>
+        <div class="content">{{ userDataService.userData()?.VlrCalculFcfnpt | currency:'BRL' }}</div>
+      </div>
+      <div class="col">
+        <div class="label">Tipo de Renda Atual</div>
+        <div class="content">{{ userDataService.userData()?.TipoRenda }}</div>
+      </div>
+      <div class="col">
+        <div class="label">Parâmetro de Renda Atual</div>
+        @if (userDataService.userData()?.TipoRenda == 'Renda em Percentual do Saldo') {
+          <div class="content">{{ userDataService.userData()?.ParametroRendaAtual | number:'0.1-2' }} %</div>
+        }
+        @if (userDataService.userData()?.TipoRenda == 'Renda em Valor Constante (Em reais)') {
+          <div class="content">{{ userDataService.userData()?.ParametroRendaAtual | currency:'BRL' }}</div>
+        }
+        @if (userDataService.userData()?.TipoRenda == 'Renda em Prazo Certo') {
+          <div class="content">{{ userDataService.userData()?.ParametroRendaAtual | number:'0.1-2' }} anos</div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

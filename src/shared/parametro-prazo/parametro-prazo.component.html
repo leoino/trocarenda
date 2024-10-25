@@ -1,0 +1,12 @@
+<h4>Escolha um prazo (em anos):</h4>
+<div class="container-inputs">
+  <div class="slider">
+    <div class="custom-slider">
+      <ngx-slider [(value)]="value" [options]="options" (userChange)="changeSlider($event.value)"></ngx-slider>
+    </div>
+  </div>
+  <div class="input-prazo">
+    <input type="number" [(value)]="value" (change)="changeValue($event)" step="1">
+    <div class="input-sufix">anos</div>
+  </div>
+</div>

@@ -1,0 +1,177 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
+h2 {
+  color: #3C2E88;
+}
+
+.header-trocarenda {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.msg-validation {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #fde8e8;
+  border-radius: 6px;
+  color: #e71414;
+  margin-left: 20px;
+}
+
+.texto-ajuda {
+  padding: 5px;
+  margin: 5px 0;
+  font-weight: 500;
+}
+
+.btn {
+  align-items: center;
+  border-radius: 8px;
+  box-sizing: border-box;
+  border: 2px solid #3C2E88;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: CamptonSemibold, Open Sans;
+  font-size: 18px;
+  justify-content: center;
+  outline: none;
+  padding: 8px 21px;
+  text-align: center;
+  height: 47px;
+  transition: background-color .3s ease, color .3s ease;
+  margin-right: 16px;
+  margin-bottom: 16px;
+
+  &.btn-primary {
+    background-color: #3C2E88;
+    border-color: #3C2E88;
+    color: #fff;
+
+    &:hover {
+      background-color: #6358a0;
+    }
+  }
+  &.btn-primary-outline {
+    background-color: #fff;
+    border-color: #3C2E88;
+    color: #3C2E88;
+
+    &:hover {
+      background-color: #eceaf3;
+    }
+  }
+
+  &:disabled {
+    background: #b4b4b4;
+    border-color: #b4b4b4;
+    pointer-events: none;
+  }
+}
+
+.container {
+  background: rgb(249, 249, 249);
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 25px;
+
+  &.light {
+  background: #fff;
+  }
+  &.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .acoes {
+    flex-direction: column;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+.green {
+  color: #32b67f;
+  font-size: 100px;
+}
+
+
+.center {
+  text-align: center;
+}
+
+.protocolo {
+  margin: 20px 0;
+}
+
+
+// Box com comparativo de rendas
+
+.box-info {
+  text-align: center;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(230, 231, 232);
+  border-radius: 4px;
+  margin-top: 9px;
+  padding: 10px;
+  display: flex;
+  &.line {
+    flex-direction: column;
+    align-items: baseline;
+    span {
+      text-align: left;
+      margin: 14px 0;
+    }
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    width: 50%;
+    color: #525252;
+    line-height: 28px;
+  }
+}
+
+.body-txt {
+  margin: 24px 0 5px 0;
+}
+
+
+// loader
+
+.loading {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffffbd;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  font-size: 23px;
+  font-weight: 700;
+  color: #3C2E88;
+  overflow: hidden;
+}
+
+.sair {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #E33E5A;
+  font-size: 18px;
+}

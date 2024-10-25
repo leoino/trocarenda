@@ -1,0 +1,27 @@
+<div class="header-trocarenda">
+  <h2>Simulador de Troca de Renda</h2>
+  @if(token) {<div class="sair" (click)="sair()">Sair</div>}
+</div>
+@if(token) {
+  @if(!simulacaoService.confirmando()) {
+    <app-dadosparticipante></app-dadosparticipante>
+    @if(solicitacaoTrocaRendaService.solicitacao().IdSimulacao && +solicitacaoTrocaRendaService.solicitacao().IdSimulacao! !== 0) {
+      <app-alteracao-efetuada></app-alteracao-efetuada>
+    }
+    <app-simulador></app-simulador>
+  }
+
+  @if(simulacaoService.confirmando() && !simulacaoService.concluido()) {
+    <app-confirmacao></app-confirmacao>
+  }
+
+  @if(simulacaoService.concluido()) {
+    <app-sucesso></app-sucesso>
+  }
+
+  @if(simulacaoService.loading()) {
+  <div class="loading">Aguarde, estamos registrando a sua solicitação...</div>
+  }
+} @else {
+  <app-create-token></app-create-token>
+}

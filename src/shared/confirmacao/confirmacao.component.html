@@ -1,0 +1,53 @@
+<div class="container">
+  <h3>Confirmação da Alteração de Forma de Renda</h3>
+  <div class="body-txt">Confirmo que desejo alterar o tipo de renda de:</div>
+  <div class="box-info">
+    <div class="col">
+      <label>Tipo de Renda Atual</label>
+      <b>{{userDataService.userData()?.TipoRenda}}</b>
+    </div>
+    <div class="col">
+      <label>Parâmetro de Renda Atual</label>
+      @if(userDataService.userData()?.TipoRenda == 'Renda em Valor Constante (Em reais)') {
+        <b>{{userDataService.userData()?.ParametroRendaAtual | currency:'BRL' }}</b>
+      }
+      @if(userDataService.userData()?.TipoRenda == 'Renda em Percentual do Saldo' || userDataService.userData()?.TipoRenda == 'Renda em Prazo Certo') {
+        <b>{{userDataService.userData()?.ParametroRendaAtual | number:'0.1-2'}}</b>
+      }
+    </div>
+  </div>
+  <div class="body-txt">Para:</div>
+  <div class="box-info">
+    <div class="col">
+      <label>Tipo de Renda Escolhido</label>
+      @if(tipoRendaService.tipoRenda() == 5) {
+        <b>Renda em Valor Constante (Em Reais)</b>
+      }
+      @if(tipoRendaService.tipoRenda() == 6) {
+        <b>Renda em Percentual do Saldo</b>
+      }
+      @if(tipoRendaService.tipoRenda() == 7) {
+        <b>Renda em Prazo Certo</b>
+      }
+    </div>
+    <div class="col">
+      <label>Parâmetro de Renda Escolhido</label>
+      @if(tipoRendaService.tipoRenda() == 5) {
+        <b>{{simulacaoService.parametroRenda() | currency:'BRL' }}</b>
+      }
+      @else {
+        <b>{{simulacaoService.parametroRenda() | number:'0.1-2'}}</b>
+      }
+    </div>
+  </div>
+  <div class="body-txt">Confirme as informações abaixo para finalizar a alteração da Forma de Renda:</div>
+  <div class="box-info line">
+    <app-checkbox (valueChange)="updateConfirmation(1, $event)" [checked]="confirmacao1" label="Estou ciente de que a alteração de renda entrará em vigor a partir de Janeiro de 2025."></app-checkbox>
+    <app-checkbox (valueChange)="updateConfirmation(2, $event)" [checked]="confirmacao2" label="Em função da opção pela alteração da minha renda, estou ciente de que, em caráter excepcional, não receberei o adiantamento do meu benefício mensal em Janeiro de 2025 e que, consequentemente, o pagamento integral será realizado no último dia útil do mês."></app-checkbox>
+  </div>
+  <div class="container center acoes">
+    <button class="btn btn-primary-outline" (click)="cancelar()">Cancelar</button>
+    <button class="btn btn-primary" (click)="finalizar()" [disabled]="!confirmacao1 || !confirmacao2">Finalizar alteração de renda</button>
+    </div>
+</div>
+

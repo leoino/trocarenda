@@ -1,0 +1,7 @@
+@if(textosAjudaFiltrados && textosAjudaFiltrados.length > 0) {
+  @for (texto of textosAjudaFiltrados; track $index) {
+    <div class="texto-ajuda">
+      {{ texto.Texto }}
+    </div>
+  }
+}

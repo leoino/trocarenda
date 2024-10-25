@@ -1,0 +1,10 @@
+@if (simulacaoService.rendaReaisValido()) {
+  <h4>Valor em Reais do Benefício Mensal na nova forma de renda escolhida:</h4>
+  <div class="renda-resultado">
+   {{ simulacaoService.rendaReaisFormatado() }}
+  </div>
+} @else {
+  <div class="no-simulation">
+    Escolha um tipo de renda e um valor válido de recebimento para simular a troca de renda.
+  </div>
+}

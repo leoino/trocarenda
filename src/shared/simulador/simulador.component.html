@@ -1,0 +1,26 @@
+<div class="container">
+  <h3>Escolher uma nova forma de Recebimento do Benefício</h3>
+  @if(parametroPlanoService.parametroPlano().length) {
+    <app-selecionartiporenda></app-selecionartiporenda>
+  }
+  @if (tipoRendaService.tipoRenda() == 5) {
+    <app-parametro-reais></app-parametro-reais>
+  }
+  @if (tipoRendaService.tipoRenda() == 6) {
+    <app-parametro-percentual></app-parametro-percentual>
+  }
+  @if (tipoRendaService.tipoRenda() == 7) {
+    <app-parametro-prazo></app-parametro-prazo>
+  }
+  <app-resultado-renda></app-resultado-renda>
+</div>
+@if (userDataService.userData() !== null && tipoRendaService.tipoRenda() > 0) {
+<div class="container">
+    <app-textos-ajuda></app-textos-ajuda>
+</div>
+
+<div class="container light center acoes">
+<button class="btn btn-primary-outline" (click)="clearSimulation()">Limpar simulação</button>
+<button class="btn btn-primary" (click)="confirmar()" [disabled]="!simulacaoService.rendaReaisValido() || tipoRendaService.tipoRenda() == 0">Continuar com nova forma de renda</button>
+</div>
+}

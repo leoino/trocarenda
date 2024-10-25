@@ -1,0 +1,15 @@
+<h4>Escolha um valor em reais:</h4>
+
+<div class="container-inputs">
+  <div class="input-reais">
+    <div class="input-prefix">R$</div>
+    <input type="text" placeholder="0,00" [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false, align: 'center' }" currencyMask
+  (ngModelChange)="changeValue($event)" [min]="minValue" [max]="maxValue" [formControl]="reais" />
+  </div>
+  @if(reais.errors?.max) {
+    <div class="msg-validation">O valor máximo permitido é {{ maxValue | currency:'BRL' }}</div>
+  }
+  @if(reais.errors?.min) {
+    <div class="msg-validation">O valor mínimo permitido é {{ minValue | currency:'BRL' }}</div>
+  }
+</div>

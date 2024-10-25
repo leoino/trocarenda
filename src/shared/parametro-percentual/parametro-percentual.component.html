@@ -1,0 +1,12 @@
+<h4>Escolha um percentual:</h4>
+<div class="container-inputs">
+  <div class="slider">
+    <div class="custom-slider">
+      <ngx-slider [(value)]="value" [options]="options" (userChange)="changeSlider($event.value)"></ngx-slider>
+    </div>
+  </div>
+  <div class="input-percentual">
+    <input type="number" [(value)]="value" (change)="changeValue($event)" step="0.01">
+    <div class="input-sufix">%</div>
+  </div>
+</div>

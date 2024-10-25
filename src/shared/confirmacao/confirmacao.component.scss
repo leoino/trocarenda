@@ -1,0 +1,30 @@
+.box-info {
+  text-align: center;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(230, 231, 232);
+  border-radius: 4px;
+  margin-top: 9px;
+  padding: 10px;
+  display: flex;
+  &.line {
+    flex-direction: column;
+    align-items: baseline;
+    span {
+      text-align: left;
+      margin: 14px 0;
+    }
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    width: 50%;
+    color: #525252;
+    line-height: 28px;
+  }
+}
+
+.body-txt {
+  margin: 24px 0 5px 0;
+}

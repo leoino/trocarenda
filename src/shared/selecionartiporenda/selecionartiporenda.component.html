@@ -1,0 +1,17 @@
+<div class="tabs">
+  @if(tiposPermitidos.includes(5)) {
+    <div class="tab" [ngClass]="{ 'active': activeTab == 5}" (click)="setTab(5)">
+      Renda em valor constante (em reais)
+    </div>
+  }
+  @if(tiposPermitidos.includes(6)) {
+  <div class="tab" [ngClass]="{ 'active': activeTab == 6}" (click)="setTab(6)">
+    Renda em percentual do Saldo
+  </div>
+  }
+  @if(tiposPermitidos.includes(7)) {
+  <div class="tab" [ngClass]="{ 'active': activeTab == 7}" (click)="setTab(7)">
+    Renda em prazo certo (em anos)
+  </div>
+  }
+</div>

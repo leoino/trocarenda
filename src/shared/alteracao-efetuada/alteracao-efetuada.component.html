@@ -1,0 +1,19 @@
+@if(solicitacaoTrocaRendaService.solicitacao()) {
+  <div class="container">
+    <h3>Alteração de renda solicitada em {{ solicitacaoTrocaRendaService.solicitacao().DataSolicitacao | date:'dd/MM/yyyy' }}</h3>
+    <div class="box-info">
+      <div class="col">
+        <label>Novo Tipo de Renda Escolhido</label>
+        <b>{{ solicitacaoTrocaRendaService.solicitacao().TipoRendaEscolhido }}</b>
+      </div>
+      <div class="col">
+        <label>Novo Parâmetro de Renda Escolhido</label>
+        <b>{{ solicitacaoTrocaRendaService.solicitacao().ParamRendaEscolhidoFormatado }}</b>
+      </div>
+      <div class="col">
+        <label>Valor de Benefício Simulado</label>
+        <b>{{ solicitacaoTrocaRendaService.solicitacao().BeneficioSimuladoFormatado }}</b>
+      </div>
+    </div>
+  </div>
+}

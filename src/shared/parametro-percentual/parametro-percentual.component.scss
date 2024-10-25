@@ -1,0 +1,83 @@
+.custom-slider {
+  padding: 34px;
+}
+
+// Slider global styles
+::ng-deep {
+  .custom-slider .ngx-slider .ngx-slider-bar {
+    background: #eee;
+    border-radius: 30px;
+    height: 15px;
+    border: 1px solid #a9a1d4;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-pointer {
+    width: 20px;
+    height: 20px;
+    background-color: #E33E5A;
+    top: -2px;
+    outline: none;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-pointer:after {
+    display: none;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-selection {
+    z-index: 2;
+    background: #3C2E88;
+  }
+
+  .custom-slider {
+    span.ngx-slider-bubble {
+      font-size: 22px;
+    }
+    span.ngx-slider-span.ngx-slider-bubble.ngx-slider-model-value {
+      background: #E33E5A;
+      color: #FFF;
+      font-weight: bold;
+      padding: 6px;
+      border-radius: 8px;
+    }
+  }
+}
+
+
+.slider {
+  width: calc(100% - 200px);
+  display: inline-block;
+}
+
+.input-percentual {
+  width: 200px;
+  display: inline-flex;
+  padding: 20px;
+  box-sizing: border-box;
+
+  input {
+    width: 65%;
+    height: 50px;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border: 1px solid #3C2E88;
+    font-size: 22px;
+    text-align: center;
+    font-weight: 700;
+    color: #3C2E88;
+    padding-right: 5px;
+  }
+
+  .input-sufix {
+    width: 35%;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    color: #FFF;
+    background: #3C2E88;
+    border: 1px solid #3C2E88;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+
+  }
+}
