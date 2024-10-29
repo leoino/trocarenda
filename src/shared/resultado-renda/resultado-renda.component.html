@@ -1,5 +1,9 @@
 @if (simulacaoService.rendaReaisValido()) {
-  <h4>Valor em Reais do Benefício Mensal na nova forma de renda escolhida:</h4>
+  @if(+simulacaoService.parametroRenda() == userDataService.userData()?.ParametroRendaAtual && +tipoRendaService.tipoRenda() == userDataService.tipoRendaUser()) {
+    <h4>Valor em Reais do Benefício Mensal mantendo a mesma forma de renda atual:</h4>
+  } @else {
+    <h4>Valor em Reais do Benefício Mensal na nova forma de renda escolhida:</h4>
+  }
   <div class="renda-resultado">
    {{ simulacaoService.rendaReaisFormatado() }}
   </div>
