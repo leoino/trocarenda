@@ -27,6 +27,8 @@ export class ParametroPrazoComponent {
 
   ngOnInit() {
     if(this.userDataService.userData() && this.parametroPlanoService.parametroPlano()) {
+      this.options.floor = this.parametroPlanoService.parametroPlano().filter(a => a.TipoRenda == 7)[0].ParamMinimo;
+      this.options.ceil = this.parametroPlanoService.parametroPlano().filter(a => a.TipoRenda == 7)[0].ParamMaximo;
       if(this.userDataService.userData()?.TipoRenda == "Renda em Prazo Certo") {
         this.value = (this.userDataService.userData()?.ParametroRendaAtual as number)/13;
         this.simulacaoService.setParametroRenda(this.value, this.userDataService.userData()?.SaldoAtuReais!);
