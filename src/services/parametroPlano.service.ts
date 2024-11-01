@@ -11,7 +11,7 @@ export class ParametroPlanoService {
   public parametroPlano = signal<ParametroPlano[]>([]);
 
   getParametroPlano(codPlano: number) {
-    this.http.get<ParametroPlano[]>(environment.apiEndpoint + '/GetPlanoParametros', { headers: { "Authorization": "Basic " + btoa("Adm_BackOffice_TrocaRenda:123456") }, params: {CodPlano: codPlano}}).subscribe(data => {
+    this.http.get<ParametroPlano[]>(environment.apiEndpoint + '/GetPlanoParametros', { headers: { "X-VivestCenter-Key": environment.key }, params: {CodPlano: codPlano}}).subscribe(data => {
       this.parametroPlano.update(() => data);
     });
   }

@@ -1,7 +1,6 @@
 import { Injectable, signal } from "@angular/core";
 import { TipoRendaService } from "./tipoRenda.service";
 import { CurrencyPipe } from "@angular/common";
-import { UserDataService } from "./userdata.service";
 
 @Injectable({
   providedIn: 'root'

@@ -76,6 +76,19 @@ export interface DadosSalvarSolicitacaoTrocaRenda {
   p_cod_tipo_renda_simulado: number;
 }
 
+export interface DadosSalvarSolicitacaoTrocaRendaV2 {
+  TipoRendaEscolhido: string,
+  ParamRendaEscolhido: number,
+  BeneficioEscolhido: number,
+  TipoRendaAtual: string;
+  ParamRendaAtual: number,
+  BeneficioAtual: number,
+  NumManifestacao: string,
+  CodEspnbfAtual: number,
+  CodTipoRendaEscolhido: number,
+}
+
+
 export interface TokenValueCredential {
   CPF: string,
 }

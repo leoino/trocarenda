@@ -16,8 +16,8 @@ export class DadosparticipanteComponent {
   dadosPosicaoAtual: UserData | null = null;
 
   ngOnInit() {
-    if(this.userDataService.userCPF()) {
-      this.userDataService.getUserData(this.userDataService.userCPF());
+    if(this.userDataService.userToken()) {
+      this.userDataService.getUserData(this.userDataService.userToken());
     }
   }
 }
