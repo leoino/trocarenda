@@ -11,11 +11,12 @@ import { SolicitacoesTrocaRendaService } from "./solicitacoesTrocaRenda.service"
 export class UserDataService {
   constructor(private http: HttpClient, public parametroPlanoService: ParametroPlanoService, public solicitacaoTrocaRendaService: SolicitacoesTrocaRendaService) {}
   public userCPF = signal('');
+  public userToken = signal('');
   public userData = signal<UserData | null>(null);
   public tipoRendaUser = signal(0);
 
-  getUserData(userCpf: string) {
-    this.http.get<UserData>(environment.apiEndpoint + '/GetDadosParticipanteTrocaRenda', { headers: { "Authorization": "Basic " + btoa("Adm_BackOffice_TrocaRenda:123456") }, params: {CPF: userCpf} }).subscribe(data => {
+  getUserData(userToken: string) {
+    this.http.get<UserData>(environment.apiEndpoint + '/DadosParticipanteTrocaRenda', { headers: { "X-VivestCenter-Key": environment.key }, params: {token: userToken} }).subscribe(data => {
       if(data.TipoRenda == 'Renda em Prazo Certo') {
         const parametroAnoEmMeses = data.ParametroRendaAtual / 13;
         data.ParametroRendaAtual = parametroAnoEmMeses;

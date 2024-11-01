@@ -41,8 +41,9 @@ export class AppComponent {
     this.route.queryParams.subscribe(params => {
       this.token = params['token'];
       if(this.token) {
-        const decoded = jwtDecode<UserIdJwtPayload>(this.token);
-        this.userDataService.userCPF.update(() => decoded.CPF);
+        // const decoded = jwtDecode<UserIdJwtPayload>(this.token);
+        // this.userDataService.userCPF.update(() => decoded.CPF);
+        this.userDataService.userToken.update(() => this.token!);
       }
     });
   }

@@ -6,7 +6,7 @@ import { Router } from "@angular/router";
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':'application/json;charset=UTF-8',
-    "Authorization": "Basic " + btoa("Adm_BackOffice_TrocaRenda:123456")
+    'X-VivestCenter-Key': environment.key
   })
 }
 @Injectable({
@@ -20,8 +20,6 @@ export class TokenService {
       CPF: CPF
     };
     this.http.post<TokenReturn>(environment.apiEndpoint + '/CreateToken', JSON.stringify(body), httpOptions).subscribe(data => {
-      console.log(data);
-
       this.router.navigate(['/'], { queryParams: {token: data.token} });
     });
   }

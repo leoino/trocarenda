@@ -10,7 +10,7 @@ import { TextosAjudaComponent } from '../textos-ajuda/textos-ajuda.component';
 import { UserDataService } from '../../services/userdata.service';
 import { SimulacaoService } from '../../services/simulacao.service';
 import { ConfirmacaoComponent } from '../confirmacao/confirmacao.component';
-import { DadosSalvarSolicitacaoTrocaRenda } from '../types';
+import { DadosSalvarSolicitacaoTrocaRenda, DadosSalvarSolicitacaoTrocaRendaV2 } from '../types';
 import { SolicitacoesTrocaRendaService } from '../../services/solicitacoesTrocaRenda.service';
 
 @Component({
@@ -49,21 +49,32 @@ export class SimuladorComponent {
       codEspnbf = 44;
       desc_tipo_renda_simulado = 'Renda em Prazo Certo';
     }
-    const novaSolicitacao: DadosSalvarSolicitacaoTrocaRenda = {
-      p_cod_emprs: this.userDataService.userData()?.CodEmprs!,
-      p_num_rgtro_emprg: this.userDataService.userData()?.NumRgtroEmprg!,
-      p_num_plbnf: this.userDataService.userData()?.NumPlbnf!,
-      p_num_cpf_emprg: this.userDataService.userData()?.NumCpfEmprg!,
-      p_desc_tipo_renda_simulado: desc_tipo_renda_simulado,
-      p_vlr_param_renda_simulado: this.simulacaoService.parametroRenda(),
-      p_vlr_beneficio_simulado: this.simulacaoService.rendaReaisSimulado(),
-      p_desc_tipo_renda_atual: this.userDataService.userData()?.TipoRenda!,
-      p_vlr_param_renda_atual: this.userDataService.userData()?.ParametroRendaAtual!,
-      p_vlr_beneficio_atual: this.userDataService.userData()?.VlrCalculFcfnpt!,
-      p_num_cpf_repres: this.userDataService.userData()?.NumCpfRepres!,
-      p_num_manifestacao: '',
-      p_cod_espbnf_atual: codEspnbf,
-      p_cod_tipo_renda_simulado: tipoRenda
+    // const novaSolicitacao: DadosSalvarSolicitacaoTrocaRenda = {
+    //   p_cod_emprs: this.userDataService.userData()?.CodEmprs!,
+    //   p_num_rgtro_emprg: this.userDataService.userData()?.NumRgtroEmprg!,
+    //   p_num_plbnf: this.userDataService.userData()?.NumPlbnf!,
+    //   p_num_cpf_emprg: this.userDataService.userData()?.NumCpfEmprg!,
+    //   p_desc_tipo_renda_simulado: desc_tipo_renda_simulado,
+    //   p_vlr_param_renda_simulado: this.simulacaoService.parametroRenda(),
+    //   p_vlr_beneficio_simulado: this.simulacaoService.rendaReaisSimulado(),
+    //   p_desc_tipo_renda_atual: this.userDataService.userData()?.TipoRenda!,
+    //   p_vlr_param_renda_atual: this.userDataService.userData()?.ParametroRendaAtual!,
+    //   p_vlr_beneficio_atual: this.userDataService.userData()?.VlrCalculFcfnpt!,
+    //   p_num_cpf_repres: this.userDataService.userData()?.NumCpfRepres!,
+    //   p_num_manifestacao: '',
+    //   p_cod_espbnf_atual: codEspnbf,
+    //   p_cod_tipo_renda_simulado: tipoRenda
+    // };
+    const novaSolicitacao: DadosSalvarSolicitacaoTrocaRendaV2 = {
+      TipoRendaEscolhido: desc_tipo_renda_simulado,
+      ParamRendaEscolhido: this.simulacaoService.parametroRenda(),
+      BeneficioEscolhido: this.simulacaoService.rendaReaisSimulado(),
+      TipoRendaAtual: this.userDataService.userData()?.TipoRenda!,
+      ParamRendaAtual: this.userDataService.userData()?.ParametroRendaAtual!,
+      BeneficioAtual: this.userDataService.userData()?.VlrCalculFcfnpt!,
+      NumManifestacao: '',
+      CodEspnbfAtual: codEspnbf,
+      CodTipoRendaEscolhido: tipoRenda
     };
     this.solicitacoesTrocaRendaService.novaSolicitacao.update(() => novaSolicitacao);
     this.simulacaoService.confirmando.update(() => true);

@@ -25,7 +25,7 @@ export class ConfirmacaoComponent {
 
   finalizar() {
     this.simulacaoService.loading.update(() => true);
-    this.solicitacoesTrocaRendaService.salvarSolicitacaoTrocaRenda(this.solicitacoesTrocaRendaService.novaSolicitacao()!);
+    this.solicitacoesTrocaRendaService.salvarSolicitacaoTrocaRenda(this.solicitacoesTrocaRendaService.novaSolicitacao()!, this.userDataService.userToken());
   }
 
   updateConfirmation(confirmation: number, value: boolean) {
