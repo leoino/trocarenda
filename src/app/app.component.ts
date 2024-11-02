@@ -17,6 +17,7 @@ import { ParametroPlanoService } from '../services/parametroPlano.service';
 import { TextosAjudaService } from '../services/textosAjuda.service';
 import { TipoRendaService } from '../services/tipoRenda.service';
 import { TokenService } from '../services/token.service';
+import { SemDadosComponent } from '../shared/sem-dados/sem-dados.component';
 
 interface UserIdJwtPayload extends JwtPayload {
   CPF: string;
@@ -26,12 +27,12 @@ interface UserIdJwtPayload extends JwtPayload {
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, DadosparticipanteComponent, SimuladorComponent, DatePipe,
-    RouterModule, ConfirmacaoComponent, SucessoComponent, AlteracaoEfetuadaComponent, CreateTokenComponent],
+    RouterModule, ConfirmacaoComponent, SucessoComponent, AlteracaoEfetuadaComponent, SemDadosComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  constructor(private route: ActivatedRoute,private router: Router, private userDataService: UserDataService,
+  constructor(private route: ActivatedRoute,private router: Router, public userDataService: UserDataService,
     public simulacaoService: SimulacaoService, public solicitacaoTrocaRendaService: SolicitacoesTrocaRendaService, private parametroPlanoService: ParametroPlanoService,
     private textosAjudaService: TextosAjudaService, private tipoRendaService: TipoRendaService) {}
   title = 'trocarenda';
@@ -41,9 +42,8 @@ export class AppComponent {
     this.route.queryParams.subscribe(params => {
       this.token = params['token'];
       if(this.token) {
-        // const decoded = jwtDecode<UserIdJwtPayload>(this.token);
-        // this.userDataService.userCPF.update(() => decoded.CPF);
         this.userDataService.userToken.update(() => this.token!);
+        this.userDataService.getUserData(this.userDataService.userToken());
       }
     });
   }

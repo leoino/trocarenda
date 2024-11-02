@@ -1,8 +1,7 @@
 <div class="header-trocarenda">
   <h2>Simulador de Troca de Renda</h2>
-  @if(token) {<div class="sair" (click)="sair()">Sair</div>}
 </div>
-@if(token) {
+@if(token && userDataService.userData()) {
   @if(!simulacaoService.confirmando()) {
     <app-dadosparticipante></app-dadosparticipante>
     @if(solicitacaoTrocaRendaService.solicitacao().IdSimulacao && +solicitacaoTrocaRendaService.solicitacao().IdSimulacao! !== 0) {
@@ -23,5 +22,5 @@
   <div class="loading">Aguarde, estamos registrando a sua solicitação...</div>
   }
 } @else {
-  <app-create-token></app-create-token>
+  <app-sem-dados></app-sem-dados>
 }
