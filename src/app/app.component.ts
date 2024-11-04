@@ -18,6 +18,7 @@ import { TextosAjudaService } from '../services/textosAjuda.service';
 import { TipoRendaService } from '../services/tipoRenda.service';
 import { TokenService } from '../services/token.service';
 import { SemDadosComponent } from '../shared/sem-dados/sem-dados.component';
+import '@iframe-resizer/child'
 
 interface UserIdJwtPayload extends JwtPayload {
   CPF: string;
